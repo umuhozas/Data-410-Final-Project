@@ -26,6 +26,9 @@ I started my analysis by checking the correlation coefficients between all varia
 ![heatmap_2019 (1)](https://user-images.githubusercontent.com/98835048/167767733-32c328d2-0640-49ae-9bc5-0a96a44d83fc.png)
 ![heatmap_2020 (1)](https://user-images.githubusercontent.com/98835048/167767731-0308d4af-1a82-45a2-9915-c47a703bd0bf.png)
 
+After obtaining the correlation coefficients for all numerical values in my dataset, I used Tableau to obtain correlation visualizations to see how all independent features relate to our dependent feature.
+
+
 
 
 
