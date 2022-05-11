@@ -1,6 +1,6 @@
 #### Data-410-Final-Project
 #### Solange Umuhoza
-#### 13 May 2022
+#### 11 May 2022
 
 # How Happy Are We Actually?
 
@@ -27,10 +27,13 @@ corruption: The Corruption Perceptions Index (CPI) is an index published annuall
 In some cases where countries are missing one or more happiness factors over the survey period, information from earlier years is used as if they were current information. This may cause some bias in my results but it will not make a huge difference because there is a limit of 3 years for how far back the researchers went in search of those missing values. I believe that the dataset used in this project is good, but not 100% accurate respective to years.
 
 ### Data Cleaning
-While cleaning the datasets used in this project, I wanted to maintain variables that play an important role in explaining national happiness. For both 2019 and 2020, I kept GDP per capita, Social support, Healthy life expectancy, Freedom to make life choices, Generosity, and Perception of corruption. Luckily, I did not have any missing values for both datasets.
+While cleaning the datasets used in this project, I wanted to maintain variables that play an important role in explaining national happiness. For both 2019 and 2020, I kept log GDP per capita, Social support, Healthy life expectancy, Freedom to make life choices, Generosity, and Perception of corruption. Luckily, I did not have any missing values for both datasets.
+
+![data](https://user-images.githubusercontent.com/98835048/167772309-06e657b9-4a7c-40e0-bd38-4a62244dcb67.png)
+
 
 ### Correlation Coefficients for all Numerical variables
-I started my analysis by checking the correlation coefficients between all variables to have an idea of what correlates more with the happiness score.  GDP, social support,  and health expectancy have the highest correlation coefficient with the happiness score for both 2019 and 2020.
+I started my analysis by checking the correlation coefficients between all variables to have an idea of what correlates more with the happiness score.  GDP, social support,  and health expectancy have the highest correlation coefficient with the happiness score for both 2019 and 2020. Correlations are useful to get a quick idea about the data.
 
 
 ![heatmap_2019 (1)](https://user-images.githubusercontent.com/98835048/167767733-32c328d2-0640-49ae-9bc5-0a96a44d83fc.png)
