@@ -22,7 +22,6 @@ In some cases where countries are missing one or more happiness factors over the
 Correlation Coefficients for all Numerical variables
 I started my analysis by checking the correlation coefficients between all variables to have an idea of what correlates more with the happiness score.  GDP, social support,  and health expectancy have the highest correlation coefficient with the happiness score.
 
-![heatmap_2019](https://user-images.githubusercontent.com/98835048/167767423-dbdead78-244d-49ec-ab37-a605d774f587.png)
 
 
 
