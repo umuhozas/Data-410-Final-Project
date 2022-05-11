@@ -20,7 +20,11 @@ corruption: The Corruption Perceptions Index (CPI) is an index published annuall
 
 In some cases where countries are missing one or more happiness factors over the survey period, information from earlier years is used as if they were current information. This may cause some bias in my results but it will not make a huge difference because there is a limit of 3 years for how far back the researchers went in search of those missing values. I believe that the dataset used in this project is good, but not 100% accurate respective to years.
 Correlation Coefficients for all Numerical variables
-I started my analysis by checking the correlation coefficients between all variables to have an idea of what correlates more with the happiness score.  GDP, social support,  and health expectancy have the highest correlation coefficient with the happiness score.
+I started my analysis by checking the correlation coefficients between all variables to have an idea of what correlates more with the happiness score.  GDP, social support,  and health expectancy have the highest correlation coefficient with the happiness score for both 2019 and 2020.
+
+![heatmap_2020 (1)](https://user-images.githubusercontent.com/98835048/167767731-0308d4af-1a82-45a2-9915-c47a703bd0bf.png)
+![heatmap_2019 (1)](https://user-images.githubusercontent.com/98835048/167767733-32c328d2-0640-49ae-9bc5-0a96a44d83fc.png)
+
 
 
 
