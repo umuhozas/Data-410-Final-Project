@@ -54,9 +54,14 @@ After obtaining the correlation coefficients for all numerical values in my data
 Random Forest is a supervised learning algorithm that uses ensemble learning method for classification and regression. Random Forest is one of the most accurate learning algorithms available and it runs very efficiently on large datasets. Random forest consists of a collection of tree–structured classifiers that are independent, identically distributed random vectors and each tree casts a unit vote for the most popular class at input x . Random forests for regression are formed by planting trees depending on the random variable x , relative to each category label, tree predictor gives a numerical result. 
 Random Forest as a combination of the tree classifer is an effective classification predicting tool. Random forest has a high accuracy level and it runs faster compared to other methods. In addition, it does not produce over-fitting. Random forest also makes it easy to find generalization error, correlation and strength, can also estimate the importance of individual variables. Random forest can also handle continuous variables and categorical variables. 
 
+### Support Vector Machine (SVM)
+SVMs are a set of supervised learning methods used for classification, regression, and outliers detection. The SVM classifiers work for both linear and nonlinear classes of data through Kernel tricks. A Support Vector Machine is a discriminative classifier formally defined by a separating hyperplane. In other words, given labeled training data, the algorithm outputs an optimal hyperplane that categorizes new samples. Classification is the task of choosing the correct class label for given data input. In basic classification tasks, each input is considered in isolation from all other inputs, and the set of labels is defined in advance. Classification can be challenging because data is often of high dimension.
+An SVM training algorithm builds a model of data points in space so that the data points of the separate categories are divided by a clear gap that is as wide as possible. New examples are then mapped into that same space and predicted to belong to a category based on which side of the gap they fall on. In addition to performing linear classification, SVMs can efficiently perform a non-linear classification using the kernel trick, which implicitly maps their inputs into high-dimensional feature spaces. More formally, an SVM constructs a hyperplane or set of hyperplanes in a high or infinite-dimensional space, which can be used for classification, regression, or other tasks.
 
+### Locally Weighted Regression
+Locally weighted regression (LWR) is a memory-based method that performs a regression around a point of interest using only training data that are ``local'' to that point. The LOESS model performs a linear regression on points in the data set, weighted by a kernel centered at x. The kernel shape is a design parameter for which there are many possible choices. 
 
-###Libraries used in my project
+### Libraries used in my project
 
 ```Python
 
@@ -219,10 +224,15 @@ print('The Cross-validated Mean Squared Error for RF is : '+str(np.mean(mse_rf))
 print('The Cross-validated Mean Squared Error for XGB is : '+str(np.mean(mse_xgb)))
 
 ```
-### The Cross-validated Mean Squared Error for LWR is : 0.4443231257009582
-### The Cross-validated Mean Squared Error for BLWR is : 0.45219311571557935
-### The Cross-validated Mean Squared Error for RF is : 0.27977824363782855
-### The Cross-validated Mean Squared Error for XGB is : 0.43598706049177594
+results:
+
+The Cross-validated Mean Squared Error for LWR is : 0.4443231257009582
+
+The Cross-validated Mean Squared Error for BLWR is : 0.45219311571557935
+
+The Cross-validated Mean Squared Error for RF is : 0.27977824363782855
+
+The Cross-validated Mean Squared Error for XGB is : 0.43598706049177594
 
 ## Kernel Regression
 ``` Python
