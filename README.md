@@ -59,6 +59,7 @@ Random Forest as a combination of the tree classifer is an effective classificat
 
 ### Support Vector Machine (SVM)
 SVMs are a set of supervised learning methods used for classification, regression, and outliers detection. The SVM classifiers work for both linear and nonlinear classes of data through Kernel tricks. A Support Vector Machine is a discriminative classifier formally defined by a separating hyperplane. In other words, given labeled training data, the algorithm outputs an optimal hyperplane that categorizes new samples. Classification is the task of choosing the correct class label for given data input. In basic classification tasks, each input is considered in isolation from all other inputs, and the set of labels is defined in advance. Classification can be challenging because data is often of high dimension.
+
 An SVM training algorithm builds a model of data points in space so that the data points of the separate categories are divided by a clear gap that is as wide as possible. New examples are then mapped into that same space and predicted to belong to a category based on which side of the gap they fall on. In addition to performing linear classification, SVMs can efficiently perform a non-linear classification using the kernel trick, which implicitly maps their inputs into high-dimensional feature spaces. More formally, an SVM constructs a hyperplane or set of hyperplanes in a high or infinite-dimensional space, which can be used for classification, regression, or other tasks.
 
 ### Locally Weighted Regression
@@ -94,14 +95,17 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from sklearn.model_selection import cross_val_score
 import xgboost as xgb
+
 ```
+## Application of our models on the World Happiness Report data from 2019
+
 ### Splitting the data into test and train datasets and standardize the input features.
 
 ```Python
 X = data_2019.drop(['score','country'], axis = 1).values
 y = data_2019['score'].values
 
-# we want to split the data into a train/test set and we want to standardize correctly
+# split the data into a train/test set andstandardize
 xtrain, xtest, ytrain, ytest = tts(X,y,test_size=0.25, random_state=123)
 
 ```
@@ -163,7 +167,7 @@ def lw_reg(X, y, xnew, kern, tau, intercept):
       f = interp1d(X.flatten(),yest,fill_value='extrapolate')
     else:
       f = LinearNDInterpolator(X, yest)
-    output = f(xnew) # the output may have NaN's where the data points from xnew are outside the convex hull of X
+    output = f(xnew) 
     if sum(np.isnan(output))>0:
       g = NearestNDInterpolator(X,y.ravel()) 
       output[np.isnan(output)] = g(xnew[np.isnan(output)])
@@ -172,14 +176,10 @@ def lw_reg(X, y, xnew, kern, tau, intercept):
 
 ```Python
 def boosted_lwr(X, y, xnew, kern, tau, intercept):
-  # we need decision trees
-  # for training the boosted method we use X and y
-  Fx = lw_reg(X,y,X,kern,tau,intercept) # we need this for training the Decision Tree
+  Fx = lw_reg(X,y,X,kern,tau,intercept)
   # Now train the Decision Tree on y_i - F(x_i)
   new_y = y - Fx
-  #model = DecisionTreeRegressor(max_depth=2, random_state=123)
   model = RandomForestRegressor(n_estimators=100,max_depth=2)
-  #model = model_xgb
   model.fit(X,new_y)
   output = model.predict(xnew) + lw_reg(X,y,xnew,kern,tau,intercept)
   return output 
@@ -273,6 +273,11 @@ results:
 
 array([0.25709581, 2.30327954, 1.64660648, 1.74019488, 1.91512056,
        0.74932409])
+      
+Ridge regression puts a constraint on the coefficients. The penalty term (lambda) regularizes the coefficients such that if the coefficients take large values the optimization function is penalized. So, ridge regression shrinks the coefficients and it helps to reduce the model complexity and multi-collinearity.  Lasso is similar to ridge regression cost function, but the only difference is instead of taking the square of the coefficients, magnitudes are taken into account.  Lasso regression not only helps in reducing over-fitting but it can help us in feature selection
+
+Lasso performed better on both the 2019 dataset and 2020 dataset compared to Ridge. with the same value of alpha, 
+
 ### Elastic Net
 ```Python
 model_net = ElasticNet(alpha = 0.2, l1_ratio = 0.5, fit_intercept = False)
@@ -299,6 +304,66 @@ results:
 array([0.24544518, 2.41175393, 1.64297973, 1.76717266, 1.57950054,
        0.05387389])
 
+## Application of our models on the World Happiness Report data from 2020
+
+The Cross-validated Mean Squared Error for LWR is : 0.5461699734502683
+
+The Cross-validated Mean Squared Error for BLWR is : 0.5540449397777254
+
+The Cross-validated Mean Squared Error for RF is : 0.32746581328778185
+
+The Cross-validated Mean Squared Error for XGB is : 0.49518979091630166
+
+The Cross-validated Mean Squared Error for Kernel Regression is : 0.1506922680827494
+
+### Lasso
+array([ 0.194633  ,  0.        ,  0.05725919,  0.        ,  0.        ,
+       -0.        ])
+       
+### Ridge 
+array([ 0.21528381,  2.83366005,  0.01993118,  1.12490197,  0.25589257,
+       -1.32370785])
+       
+### Elastic Net
+
+array([ 0.15699204,  0.        ,  0.06268717,  0.        ,  0.        ,
+       -0.        ])
+       
+### Squareroot Lasso
+
+array([ 0.25094054,  1.92372041,  0.02869725,  0.78870295,  0.05962698,
+       -1.18627133])
+
+
+
+
+
+### Model evaluation and comparison
+To evaluate different model performances, I compared regression-based R^2, mean square error. R^2 was derived from correlations between predicted and observed values. All models had good overall performance when evaluating the mean squared error for 2019 world happiness data and 2020. Among all models, the random forest had the lowest mean squared error and it performed best on both the 2019 data and 2020 data. I applied all models to the data collected during the year of 2020, and the accuracy of all models declined. The covid-19 pandemic negatively affected the data collection process and it affected the quality of the whole dataset, hence poor predictions by our models.
+
+### References 
+
+World Happiness Report up to 2022. (n.d.). Retrieved May 10, 2022, from https://www.kaggle.com/mathurinache/world-happiness-report
+
+Inc, G. (n.d.). Tracking the World’s Happiness. Gallup.Com. Retrieved May 11, 2022, from https://www.gallup.com/analytics/247355/gallup-world-happiness-report.aspx
+
+Bhattacharyya, S. (2020, September 28). Ridge and Lasso Regression: L1 and L2 Regularization. Medium. https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b
+
+Cleveland, W. S., & Devlin, S. J. (1988). Locally Weighted Regression: An Approach to Regression Analysis by Local Fitting. Journal of the American Statistical Association, 83(403), 596–610. https://doi.org/10.1080/01621459.1988.10478639
+
+Locally Weighted Regression. (n.d.). Retrieved May 13, 2022, from http://www.cs.cmu.edu/afs/cs/project/jair/pub/volume4/cohn96a-html/node7.html
+
+Liu, B., Ma, M., & Chang, J. (Eds.). (2012). Information Computing and Applications (Vol. 7473). Springer Berlin Heidelberg. https://doi.org/10.1007/978-3-642-34062-8
+
+Gross Domestic Product (GDP) Definition. (n.d.). Investopedia. Retrieved May 10, 2022, from https://www.investopedia.com/terms/g/gdp.asp
+
+Gross Domestic Product (GDP) Definition. (n.d.). Investopedia. Retrieved May 10, 2022, from https://www.investopedia.com/terms/g/gdp.asp
+
+Amarappa, S., & Sathyanarayana, D. S. V. (n.d.). Data classification using Support vector Machine (SVM), a simplified approach. 11.
+
+Chen, J., de Hoogh, K., Gulliver, J., Hoffmann, B., Hertel, O., Ketzel, M., Bauwelinck, M., van Donkelaar, A., Hvidtfeldt, U. A., Katsouyanni, K., Janssen, N. A. H., Martin, R. V., Samoli, E., Schwartz, P. E., Stafoggia, M., Bellander, T., Strak, M., Wolf, K., Vienneau, D., … Hoek, G. (2019). A comparison of linear regression, regularization, and machine learning algorithms to develop Europe-wide spatial models of fine particles and nitrogen dioxide. Environment International, 130, 104934. https://doi.org/10.1016/j.envint.2019.104934
+
+García-Portugués, E. (n.d.). 5.3 Inference for model parameters | Notes for Predictive Modeling. Retrieved May 13, 2022, from https://bookdown.org/egarpor/PM-UC3M/glm-inference.html
 
 
 
