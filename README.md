@@ -27,7 +27,7 @@ corruption: The Corruption Perceptions Index (CPI) is an index published annuall
 In some cases where countries are missing one or more happiness factors over the survey period, information from earlier years is used as if they were current information. This may cause some bias in my results but it will not make a huge difference because there is a limit of 3 years for how far back the researchers went in search of those missing values. I believe that the dataset used in this project is good, but not 100% accurate respective to years.
 
 ### Data Cleaning
-While cleaning the datasets used in this project, I wanted to maintain variables that play an important role in explaining national happiness. For both 2019 and 2020, I kept log GDP per capita, Social support, Healthy life expectancy, Freedom to make life choices, Generosity, and Perception of corruption. Luckily, I did not have any missing values for both datasets.
+While cleaning the datasets used in this project, I wanted to maintain variables that play an important role in explaining national happiness. For both 2019 and 2020, I kept log GDP per capita, Social support, Healthy life expectancy, Freedom to make life choices, Generosity, and Perception of corruption. Luckily, I did not have any missing values for both datasets. The tables below show what my data looks like.
 
 ![data](https://user-images.githubusercontent.com/98835048/167772309-06e657b9-4a7c-40e0-bd38-4a62244dcb67.png)
 
@@ -38,10 +38,13 @@ I started my analysis by checking the correlation coefficients between all varia
 
 ![heatmap_2019 (1)](https://user-images.githubusercontent.com/98835048/167767733-32c328d2-0640-49ae-9bc5-0a96a44d83fc.png)
 ![heatmap_2020 (1)](https://user-images.githubusercontent.com/98835048/167767731-0308d4af-1a82-45a2-9915-c47a703bd0bf.png)
+
+Overall Plot of the the correlation coefficients of all variables. 
+
 ![all_corr](https://user-images.githubusercontent.com/98835048/168405000-bf01b85b-5379-4e19-a8d6-fa95b509fa3e.png)
 
 
-After obtaining the correlation coefficients for all numerical values in my dataset, I used Tableau to obtain correlation visualizations to see how all independent features relate to our dependent feature.
+After obtaining the correlation coefficients for all numerical values in my dataset, I used Tableau to obtain correlation visualizations to see how all independent features relate to our dependent feature for every country. 
 
 
 <img width="500" alt="gdp health" src="https://user-images.githubusercontent.com/98835048/167769134-b745261d-591d-4040-b5e2-f911f88cca9f.png">
